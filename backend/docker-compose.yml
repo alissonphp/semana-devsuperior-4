@@ -1,0 +1,17 @@
+version: "3"
+services:
+  postgres:
+    image: postgres
+    container_name: dsvendas_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: dsvendas_db
+      POSTGRES_USER: dsvendas_user
+      POSTGRES_PASSWORD: dsvendas_dev_pass
+    volumes:
+      - "dsvendas_vol:/var/lib/postgresql/data"
+    ports:
+      - 5432:5432
+
+volumes:
+  dsvendas_vol:
