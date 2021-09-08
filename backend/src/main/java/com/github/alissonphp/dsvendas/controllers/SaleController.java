@@ -1,6 +1,8 @@
 package com.github.alissonphp.dsvendas.controllers;
 
 import com.github.alissonphp.dsvendas.dto.SaleDTO;
+import com.github.alissonphp.dsvendas.dto.SalesSuccessDTO;
+import com.github.alissonphp.dsvendas.dto.SalesSumDTO;
 import com.github.alissonphp.dsvendas.dto.SellerDTO;
 import com.github.alissonphp.dsvendas.entities.Sale;
 import com.github.alissonphp.dsvendas.services.SaleService;
@@ -25,6 +27,18 @@ public class SaleController {
     @GetMapping
     public ResponseEntity<Page<SaleDTO>> findAll(Pageable pageable) {
         Page<SaleDTO> list = service.findAll(pageable);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping(value = "/amount-by-seller")
+    public ResponseEntity<List<SalesSumDTO>> amountGroupedBySeller() {
+        List<SalesSumDTO> list = service.amountGroupedBySeller();
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping(value = "/success-by-seller")
+    public ResponseEntity<List<SalesSuccessDTO>> successGroupedBySeller() {
+        List<SalesSuccessDTO> list = service.successGroupedBySeller();
         return ResponseEntity.ok(list);
     }
 
